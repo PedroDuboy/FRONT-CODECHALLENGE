@@ -1,0 +1,47 @@
+@import '../../../assets/styles/fonts';
+@import '../../../assets/styles/variables';
+
+.container-meteo{
+    margin-top: 1.5em;
+    padding-left:2em ;
+    padding-top: 2em;
+    width: 60%; 
+    height: 80%; 
+    position: relative; 
+    background: white;
+    box-shadow: 0px 4px 50px rgba(55, 55, 68, 0.05); 
+    border-radius: 7px;
+    margin-right: 1em;
+    margin-top: 5em;
+}
+ h3{
+    width: 100%;
+    padding-left: 16px;
+    text-align:left;
+    color: #858585;
+    font-family: Lato;
+    font-size: 2em;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; 
+ }
+ .info_mateo{
+    font-family: Lato;
+    font-size: 1em;
+    font-style: normal;
+    color: #858585;;
+ }
+
+ .container-mateo-informacion{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 45px 45px 0px 25px ;
+
+    div{
+        p{
+            padding-top: 0.5em;
+        }
+    }
+ }

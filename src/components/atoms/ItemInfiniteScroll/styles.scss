@@ -1,164 +1,95 @@
-@import '../../../assets/styles/fonts';
-@import '../../../assets/styles/variables';
-
-
-.item-infinite-scroll-container{
-    border-bottom: 1px solid #DBDBDB;
-    max-width: 704px;
-    padding: 24px 24px 8px 8px;
+.item-infinite-scroll-container {
+    border-bottom: 1px solid #ededed;
     display: flex;
-    flex-direction: column;
+    justify-content: space-evenly;
+    margin-bottom: 1px;
+  height: 100%;
+    .item-infinite-scroll-header {
+      display: flex;
+      height: 100%;
+      width: 60em;
+      .item-infinite-scroll-info {
+        width: 100%;
+        display: flex;
+       justify-content: space-evenly;
+        padding: 24px;
+        height: 100%;
+  
+        p {
+          font-family: Inter;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: #828282;
+          padding: 8px 0;
+  
+          strong {
+            color: #5B5B5B;
+            font-family: Lato;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 24px; 
+          }
+        }
 
-    .item-infinite-scroll-header{
-        display:flex;
-        .item-infinite-scroll-photo{
-            width: 20%;
-        }
-        .item-infinite-scroll-info{
-            width: 100%;
-            display: flex;
-            h2{
-                font-family: Inter;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 16px;
-                letter-spacing: 0em;
-                text-align: left;
-                color: #4F4F4F;
-            }
-            
-            p{
-                font-family: Inter;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 24px;
-                letter-spacing: 0em;
-                text-align: left;
-                color: #828282;
-                padding: 24px;
-                strong{
-                    text-transform: uppercase;
-                }
-            }
-        }
-        .item-infinite-scroll-comments{
-            width: 20%;
-            display: flex;
-            justify-content: flex-end;
-            p{
-                font-family: Poppins;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 24px;
-                letter-spacing: 0em;
-                text-align: left;
-                margin-left: 4px;
-                color: #9A9CB5;
-            }
-        }
+        span {
+          color: #B6B4B4;
+
+font-feature-settings: 'clig' off, 'liga' off;
+font-family: Lato;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 100% */
+          }
+      }
     }
 
-    .item-infinite-scroll-footer{
-        display:flex;
+    .containerbtn-lecciones{
+        width: 25em;
+       
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-left: 5em;
+        background: white;
+        text-decoration: none;
+    
 
-        .item-infinite-scroll-likes{
-            display:flex;
-            width: 15%;
-            margin-left: 20%;
-            svg{
-                margin-right:20px;
-            }
+        .item-title-{
+            padding-top: 0.4em;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            font-family: Lato; 
+            width: 8em;
+            height: 2.4em; 
+            background: #ffffff; 
+            border-radius:  24px;
+            background: #F4ECFE; 
         }
-
-        .item-infinite-scroll-meta{
-            width: 60%;
-            p{
-                font-family: Inter;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 24px;
-                letter-spacing: 0em;
-                text-align: left;
-                color: #828282;
-                strong{
-                    font-family: Inter;
-                    font-size: 13px;
-                    font-style: normal;
-                    font-weight: 600;
-                    line-height: 24px;
-                    letter-spacing: 0em;
-                    text-align: left;
-                    color: #3843D0;
-                }
-            }
+      
+        .item-title{
+            padding-top: 0.3em;
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            font-family: Lato; 
+            width: 8em;
+            height: 2.4em; 
+            background: #ffffff; 
+            border-radius:  24px;
+            border: solid #7908FF 0.1em 
         }
-
-        .item-infinite-scroll-share{
-            width: 15%;
-            display:flex; 
-            justify-content: flex-end;
-            svg{
-                margin-left:20px;
-            }
-
-            p{
-                font-family: Poppins;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 600;
-                line-height: 24px;
-                letter-spacing: 0em;
-                text-align: left;
-                margin-left: 4px;
-                color: #9A9CB5;
-            }
+      
+        a{
+            color:#7908FF; 
+            text-decoration: none;
         }
     }
-}
-
-@media (max-height: $mobile-height) and (max-width: $mobile-width) {
-    .item-infinite-scroll-container{
-        margin-left: 0;
-        padding: 32px 0px 0px 0px;
-
-        .item-infinite-scroll-header{
-            margin-bottom: 16px;
-
-            .item-infinite-scroll-photo{
-                margin-right: 18px;
-                svg{
-                    width: 64px;
-                    height: 64px;
-                }
-            }
-            .item-infinite-scroll-info{
-                width: 80%;
-            }
-        } 
-
-        .item-infinite-scroll-footer{
-
-            .item-infinite-scroll-likes{
-                width: 20%;
-                margin-left: 0;
-                margin-right: 16px;
-                svg{
-                    margin-right: 16px;
-                } 
-            }
-
-            .item-infinite-scroll-share{
-                width: auto;
-
-                svg{
-                    width: 18px;
-                    height: 18px;
-                } 
-            }
-        } 
-    }
-}
+  }
+  

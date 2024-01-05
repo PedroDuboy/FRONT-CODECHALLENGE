@@ -1,110 +1,119 @@
-import React, {useState} from 'react';
-import { withTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
-
-import { AuthService } from 'services/AuthService';
-import useRequest from 'hooks/useRequest';
-import { isMobile } from 'helpers/Mobile';
-
-import LoginHeader from 'components/atoms/LoginHeader';
-import InputText from 'components/atoms/InputText';
-import InputCheckbox from 'components/atoms/InputCheckbox';
-import ActionButton from 'components/atoms/ActionButton';
-
-
-import './styles.scss';
+import React, { useState } from "react";
+import { withTranslation } from "react-i18next";
+import { useHistory } from "react-router-dom";
+import useRequest from "hooks/useRequest";
+import InputText from "components/atoms/InputText";
+import ActionButton from "components/atoms/ActionButton";
+import SVG from "./Login.svg";
+import LogoRipio from "./logo-ripio_negro.png";
+import "./styles.scss";
 
 const SignInView = (props) => {
-    const history = useHistory();
+  const history = useHistory();
+  const {
+    submitted,
+    success,
+    message,
+    errors,
+    beforeSubmit,
+    afterSubmit,
+    showError,
+  } = useRequest();
 
-    const {
-        submitted, success, message, errors,
-        beforeSubmit, afterSubmit, showError,
-        dealWithError
-    } = useRequest();
+  const [email, setEmail] = useState("");
+  const [clave, setClave] = useState("");
+  const [showPass] = useState(false);
 
-    const [email, setEmail] = useState("");
-    const [clave, setClave] = useState("");
-    const [showPass, setshowPass] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    beforeSubmit();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        beforeSubmit();
-        AuthService.login(email, clave)
-            .then(data => {
-                AuthService.loadUser().then(data => {
-                    afterSubmit();
-                    // The event in App.js push to /home
-                    history.push('/home');
-                    console.log('login');
-                }).catch(error => {
-                    showError('El usuario no existe');
-                });
-            }).catch((error) => {
-                console.log(error.status);
-                dealWithError(error, '');
-                console.log(errors);
-            });
-    }
-
-    const registrar = (e) => {
-        e.preventDefault();
-    }
-
-    const pedirPassword = (e) => {
-        e.preventDefault();
-    }
-
-    return (
-        <div className="signin-container">
-            {!isMobile && <LoginHeader></LoginHeader>}
-
-            <div className="signin-content">
-                <form  className="signin-form" onSubmit={handleSubmit}>
-                    <h1 className="signin-title">Iniciar Sesión</h1>
-                    <div className="signin-input-group">
-                        <div className="signin-input-icon-container">
-                        </div>
-                        <div className="signin-input-container">
-                            <InputText id="email" label="" type="text" placeholder="Ingresá tu email"
-                                handleChange={(event) => { setEmail(event.target.value) }} error={errors.email}/>
-                        </div>
-                    </div>
-                    <div className="signin-input-group">
-                        <div className="signin-input-icon-container">
-                        </div>
-                        <div className="signin-input-container">
-                            <InputText id="password" label="" placeholder="Ingresá tu contraseña"
-                                handleChange={(event) => {setClave(event.target.value)}}
-                                type={showPass ? 'text' : 'password'} error={errors.password}/>
-                            <div className={showPass ? 'register-eye show' : 'register-eye hide'} onClick={() => { setshowPass(false) }}>
-                                Mostrar
-                            </div>
-                            <div className={showPass ? 'register-eye-closed hide' : 'register-eye show'} onClick={() => { setshowPass(true) }}>
-                                Ocultar
-                            </div>
-                        </div>
-                    </div>
-                    { (success === false && message) &&
-                        <p className="error-messages">{message}</p>
-                    }
-                    <div  className="signin-button">
-                        <ActionButton legend={'INGRESAR'} disabled={submitted}
-                            handleClick={handleSubmit} type={'submit'} />
-                    </div>
-                    <div className="signin-olvide">
-                        <a onClick={pedirPassword}>Olvidé mi contraseña</a>
-                    </div>
-                    <div className="signin-bottom-content">
-                        <p className="signin-bottom-legend">¿Todavía no te registraste?</p>
-                        <div className="signin-bottom-button">
-                            <ActionButton legend="REGISTRARME" handleClick={registrar}/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    const storedTestUserLocal = JSON.parse(localStorage.getItem("testUser"));
+    const storedTestUserSession = JSON.parse(
+      sessionStorage.getItem("testUser")
     );
-}
+    const storedTestUser = storedTestUserLocal || storedTestUserSession;
+
+    if (
+      storedTestUser &&
+      email === storedTestUser.email &&
+      clave === storedTestUser.password
+    ) {
+      afterSubmit();
+      history.push("/users");
+    } else {
+      showError("Credenciales incorrectas. Inténtalo de nuevo ⚠️");
+      afterSubmit();
+    }
+  };
+
+  // Usuario de prueba
+  const storeTestUserData = () => {
+    const testUser = {
+      email: "ripionauta@gmail.com",
+      password: "prueba123",
+    };
+    localStorage.setItem("testUser", JSON.stringify(testUser));
+    sessionStorage.setItem("testUser", JSON.stringify(testUser));
+  };
+
+  storeTestUserData();
+
+  return (
+    <div className="container-login-general">
+      <div className="container-svg">
+        <img src={SVG} alt="SVG"/>
+      </div>
+      <div className="container-form-login">
+        <div className="container-creaCuenta">
+          <p>
+            ¿No tenés una cuenta? <span>Crear una cuenta</span>
+          </p>
+        </div>
+        <form className="signin-form" onSubmit={handleSubmit}>
+          <div className="container-logo-login">
+            <img src={LogoRipio} alt="SLogoRipio" />
+            <h3>Ingresar</h3>
+          </div>
+              <InputText
+                id="email"
+                label=""
+                type="text"
+                placeholder="Email"
+                handleChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+                error={errors.email}
+              />        
+              <InputText
+                id="password"
+                label=""
+                placeholder="Contraseña"
+                handleChange={(event) => {
+                  setClave(event.target.value);
+                }}
+                type={showPass ? "text" : "password"}
+                error={errors.password}
+              />
+          {success === false && message && (
+            <p className="error-messages">{message}</p>
+          )}
+
+          <div className="signin-button">
+            <ActionButton
+              legend={"Ingresar"}
+              disabled={submitted}
+              handleClick={handleSubmit}
+              type={"submit"}
+            />
+          </div>
+          <div className="olvidaste_contrasena">
+            <p>¿Olvidaste tu contraseña?</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default withTranslation()(SignInView);

@@ -1,72 +1,65 @@
-import React, {useState, useEffect} from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Context, ContextPersist } from "./store/context";
+import SignInView from "views/Auth/Login/SignInView";
+import UserListView from "./views/User/UserList/UserListView";
+import ClimaViews from "views/Clima/OpenMateoClima/ClimaViews";
+import LesionesViews from "views/Lecciones/LeccionesViews";
+import "./App.css";
 
-import './App.css';
-
-import {Context, ContextPersist} from "./store/context"
-import { AuthService } from './services/AuthService';
-
-import UserListView from './views/User/UserList/UserListView';
-import FriendshipListView from './views/Lesson/FriendshipList/FriendshipListView';
-import UserLessonListView from './views/Lesson/UserLessonList/UserLessonListView';
-import UserFriendshipListView from './views/Lesson/UserFriendshipList/UserFriendshipListView';
 
 function App() {
-    const history = useHistory();
 
-    const [user, setUser] = useState(null);
+  const history = useHistory();
+  const [user, setUser] = useState(null);
 
-    useEffect(() => {
-        AuthService.loadUser()
-            .then(user => {
-                setUser(user);
-            }).catch(error => {
-                console.log(error)
-            }
-        );
-
-        const currentUserObserver = AuthService.currentUser.subscribe(user_event => {
-            if (user != null && user_event === null) {
-                history.push('/login');
-            }
-            
-            setUser(user_event);
-        });
-
-        return function cleanup() {
-            currentUserObserver.unsubscribe();
+  useEffect(() => {
+    const loadUserAndRedirect = async () => {
+      try {
+        const storedUserLocal = JSON.parse(localStorage.getItem("currentUser"));
+        const storedUserSession = JSON.parse(sessionStorage.getItem("currentUser"));
+        const storedUser = storedUserLocal || storedUserSession;
+        if (storedUser) {
+          setUser(storedUser);
+          history.push("/users");
+        } else {
+          history.push("/login");
         }
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+      } catch (error) {
+        console.error("Error al cargar el usuario:", error);
+      }
+    };
 
-    return (
-        <ContextPersist><Context>
+    loadUserAndRedirect();
+  }, [history]);
 
+  return (
+    <ContextPersist>
+      <Context>
         <main>
-            <Switch>
-                <React.Fragment>
-                        {/* { (load && !user) &&
-                        <div>
-                            <Route path='/login' component={SignInView} />
-                        </div>
-                        }
-                        { (load && user) && */}
-                        <div>
-                            <Route path='/users' component={UserListView} />
-                            <Route path='/friendships' component={FriendshipListView} />
-                            <Route path='/user-lessons/:user' component={UserLessonListView} />
-                            <Route path='/user-friendships/:user' component={UserFriendshipListView} />
-                            <Route exact path="/">
-                                <Redirect to="/users" />
-                            </Route>
-                        </div>
-                        {/* } */}
-                </React.Fragment>
-            </Switch>
+          <Switch>
+            <React.Fragment>
+              <div>
+                <Route path="/login" component={SignInView} />
+                <Route path="/users" component={UserListView} />
+                <Route path="/clima" component={ClimaViews} />
+                <Route path="/lecciones" component={LesionesViews} />
+                <Route exact path="/">
+                  {" "}
+                  {user ? (
+                    <Redirect to="/users" />
+                  ) : (
+                    <Redirect to="/login" />
+                  )}{" "}
+                </Route>
+              </div>
+            </React.Fragment>
+          </Switch>
         </main>
-        </Context></ContextPersist>
-
-    );
+      </Context>
+    </ContextPersist>
+  );
 }
 
 export default App;

@@ -1,30 +1,28 @@
 import React from "react";
-
 import InfiniteScrollComponent from "react-infinite-scroll-component";
-
 import ItemInfiniteScroll from "components/atoms/ItemInfiniteScroll";
-
 import "./styles.scss";
+import { Lecciones } from "./InfiniteScroll.stories.js";
 
-const InfiniteScroll = ({ elements, hasMore, fetchMoreData, showLinks }) => {
-
-  return <div>
-        <InfiniteScrollComponent
-          dataLength={elements.length}
-          next={fetchMoreData}
-          hasMore={hasMore}
-          loader={<h4>Cargando...</h4>}
-          endMessage={<h4>No hay mas preguntas</h4>}
-          scrollableTarget="right-layout-content"
-        >
-          {elements.map((i, index) => (
-            <div key={index}>
-              <ItemInfiniteScroll element={i} showLinks={showLinks}/>
-            </div>
-          ))}
-        </InfiniteScrollComponent>
-      </div>
-    
-}
+const InfiniteScroll = () => {
+  const fakeItems = Lecciones();
+  return (
+    <div>
+      <InfiniteScrollComponent
+        dataLength={fakeItems.length}
+        hasMore={true}  
+        loader={<h4>Cargando...</h4>}
+        endMessage={<h4>No hay más preguntas</h4>}
+        scrollableTarget="right-layout-content"
+      >
+        {fakeItems.map((i, index) => (
+          <div key={index}>
+            <ItemInfiniteScroll element={i} showLinks={true} />
+          </div>
+        ))}
+      </InfiniteScrollComponent>
+    </div>
+  );
+};
 
 export default InfiniteScroll;

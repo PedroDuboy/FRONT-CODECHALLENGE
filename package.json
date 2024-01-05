@@ -28,7 +28,7 @@
     "react-dom": "^16.13.1",
     "react-google-recaptcha": "^2.1.0",
     "react-i18next": "^11.7.0",
-    "react-infinite-scroll-component": "^6.0.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-number-format": "^4.9.1",
     "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.1.2",
@@ -38,7 +38,7 @@
     "storybook": "^5.3.18"
   },
   "scripts": {
-    "start": "chmod +x ./env.sh && ./env.sh && cp env-config.js ./public/ && react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

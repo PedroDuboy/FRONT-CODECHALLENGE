@@ -11,7 +11,7 @@
     }
     label{
         height: 16px;
-        width: auto;
+        width:100%;
         left: 288px;
         top: 122px;
         border-radius: nullpx;
@@ -29,10 +29,12 @@
         max-width: 576px;
         left: 288px;
         top: 146px;
-        border-radius: 12px;
+        border-radius: 1px;
         padding: 15px, 48px, 15px, 16px;
-        border: 2px solid rgba(38, 38, 38, 0.25);
-
+        border: 1px solid rgba(92, 92, 92, 0.25);
+        border-left: none;
+        border-right: none;
+        border-top: none;
         &:focus{
                 outline: none;
         }

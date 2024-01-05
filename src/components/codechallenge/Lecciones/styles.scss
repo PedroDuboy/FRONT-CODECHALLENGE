@@ -1,0 +1,27 @@
+@import '../../../assets/styles/fonts';
+@import '../../../assets/styles/variables';
+
+
+.container_lecciones_InfiniteScroll{
+  
+    width: 100%; 
+    height: 100%;
+}
+.container_lecciones_back{
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%; 
+    height: auto; 
+    background: white;
+    box-shadow: 0px 4px 50px rgba(55, 55, 68, 0.05); 
+    border-radius: 7px;
+    
+h2{
+    padding-top: 1em;
+    font-family: Lato;
+    color: rgb(143, 142, 142);
+}
+ }

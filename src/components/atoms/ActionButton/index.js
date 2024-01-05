@@ -1,9 +1,15 @@
-import React from 'react'
+import React from 'react';
 import './styles.scss';
 
-const ActionButton = ({legend, handleClick, className, type='button'}) => {
+const ActionButton = ({ legend, handleClick, className, type = 'btn' }) => {
 
-return <input type={type} className={"action-button "+className} value={legend} onClick={handleClick} />
-}
+  return (
+    <div className="action-button">
+    <a href="d" className={` btn ${className}`} onClick={handleClick}>
+      {legend}
+    </a>
+    </div>
+  );
+};
 
 export default ActionButton;
