@@ -109,7 +109,7 @@ const LoginHeader = () => {
         </Link>
         <div className="container info_rpc_container">
           <div className="container info_rpc_cantidad">
-          <img className="img_coin" src="https://s3-alpha-sig.figma.com/img/b112/fb83/8ae2b552b873527d9e10d7d1760e2271?Expires=1704672000&Signature=QTL~1QIQGxuYWm1KZWKB3tZzjYxcTWDXEFvI1ILlY7z2ymG9bWeiS8VUT7ChhnIfp1wa3wE4VTMfm1JQ-wVAGqVvUW5Og3XDuAB9C2~DN6i0GWpqLNp8HzaVf5QtfsoePWt3xFsxGRZNGH52KY49r8e-TVOhNEFFxjmMzZ1wKMXUS9FygMyr3OoWT4OBZu8u3trHsAm~mF9-Jvt3o2rok7NR6~zfqAxuQrqC0FsUkAvjRktCYxcQsmPf2Stgr1DmzJpTfhPp4R4rvHWLCXCleLkdzpudNnH1DhYJ2vuOQp2zNr7jfKMkamlPAhag~ywF7MHvlb3NGbiJhkJBKA8nwA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt=""></img>
+          <img className="img_coin" src="https://firebasestorage.googleapis.com/v0/b/objetivos-f48b8.appspot.com/o/Recurso%203%403x%201.png?alt=media&token=82529a0f-6921-4d00-92b1-409786fb7634" alt=""></img>
             <h5>60 RPC</h5>
             <svg
               xmlns="http://www.w3.org/2000/svg"

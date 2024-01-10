@@ -5,7 +5,7 @@ import { Context, ContextPersist } from "./store/context";
 import SignInView from "views/Auth/Login/SignInView";
 import UserListView from "./views/User/UserList/UserListView";
 import ClimaViews from "views/Clima/OpenMateoClima/ClimaViews";
-import LesionesViews from "views/Lecciones/LeccionesViews";
+import LeccionesViews from "views/Lecciones/LeccionesViews";
 import "./App.css";
 
 
@@ -44,7 +44,7 @@ function App() {
                 <Route path="/login" component={SignInView} />
                 <Route path="/users" component={UserListView} />
                 <Route path="/clima" component={ClimaViews} />
-                <Route path="/lecciones" component={LesionesViews} />
+                <Route path="/lecciones" component={LeccionesViews} />
                 <Route exact path="/">
                   {" "}
                   {user ? (
